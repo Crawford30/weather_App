@@ -58,7 +58,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //=======convert url to request===
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
