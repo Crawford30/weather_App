@@ -17,6 +17,7 @@
 		EEA4AFA7255E7AAA00B720D0 /* Weather_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AFA6255E7AAA00B720D0 /* Weather_AppUITests.swift */; };
 		EEA4AFB5255E7F3B00B720D0 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AFB4255E7F3B00B720D0 /* WeatherCell.swift */; };
 		EED43748255E8F4800C42987 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED43747255E8F4800C42987 /* Utilities.swift */; };
+		EED4374A255E907200C42987 /* WeatherClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED43749255E907100C42987 /* WeatherClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		EEA4AFA8255E7AAA00B720D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEA4AFB4255E7F3B00B720D0 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		EED43747255E8F4800C42987 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		EED43749255E907100C42987 /* WeatherClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				EEA4AF8F255E7AA900B720D0 /* LaunchScreen.storyboard */,
 				EEA4AF92255E7AA900B720D0 /* Info.plist */,
 				EEA4AFB4255E7F3B00B720D0 /* WeatherCell.swift */,
+				EED43749255E907100C42987 /* WeatherClass.swift */,
 			);
 			path = Weather_App;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				EEA4AFB5255E7F3B00B720D0 /* WeatherCell.swift in Sources */,
 				EEA4AF89255E7A9800B720D0 /* ViewController.swift in Sources */,
 				EEA4AF85255E7A9800B720D0 /* AppDelegate.swift in Sources */,
+				EED4374A255E907200C42987 /* WeatherClass.swift in Sources */,
 				EED43748255E8F4800C42987 /* Utilities.swift in Sources */,
 				EEA4AF87255E7A9800B720D0 /* SceneDelegate.swift in Sources */,
 			);
