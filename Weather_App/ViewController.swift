@@ -138,9 +138,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         }
                         
                         
-                        for weatherDict in weatherData{
-                            weatherObject.weatherDesc = weatherDict["description"] as! String
-                            weatherObject.weatherIcon = weatherDict["icon"] as! String
+                        for weatherData in weatherData{
+                            weatherObject.weatherDesc = weatherData["description"] as! String
+                            weatherObject.weatherIcon = weatherData["icon"] as! String
                             
                         }
                         
