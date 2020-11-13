@@ -78,9 +78,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 
             }
             
-            var weatherObject: WeatherClass
-            
-            weatherObject = WeatherClass.init()
             
             
             
@@ -98,6 +95,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     //print("THIS IS PARSE JSON: \(parserJSON)")
                     
                     for dataReturned in parserJSON {
+                        
+                        var weatherObject: WeatherClass
+                        weatherObject = WeatherClass.init()
+                        
                         
                         weatherObject.cityName = dataReturned["name"] as! String
                         weatherObject.id = dataReturned["id"] as! Int
@@ -145,21 +146,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             
                         }
                         
+                      
                         self.weatherArray.append(weatherObject)
-                        
+
                         DispatchQueue.main.async {
                             
                             self.collectionView.reloadData()
                             
                         }
-                        
-                        
+                    
                         
                     }
                     
-                    
-                    
-                    
+               
                     
                 }
                 
@@ -185,7 +184,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     
-    //==========================
+    
     
     
     //============function to display alert messages==================
@@ -260,8 +259,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let unixTimeInterval: Int = weatherArrayObject.date
         let stringDate = Utilities.convertUnixTimeStampToStringDate(unixTimeInterval: unixTimeInterval)
         cell.dateLabel.text! = stringDate
-        
-        
         
         return cell
     }
