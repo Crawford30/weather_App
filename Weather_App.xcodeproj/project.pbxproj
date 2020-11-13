@@ -16,6 +16,7 @@
 		EEA4AF9C255E7AAA00B720D0 /* Weather_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AF9B255E7AAA00B720D0 /* Weather_AppTests.swift */; };
 		EEA4AFA7255E7AAA00B720D0 /* Weather_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AFA6255E7AAA00B720D0 /* Weather_AppUITests.swift */; };
 		EEA4AFB5255E7F3B00B720D0 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AFB4255E7F3B00B720D0 /* WeatherCell.swift */; };
+		EED43748255E8F4800C42987 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED43747255E8F4800C42987 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		EEA4AFA6255E7AAA00B720D0 /* Weather_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_AppUITests.swift; sourceTree = "<group>"; };
 		EEA4AFA8255E7AAA00B720D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEA4AFB4255E7F3B00B720D0 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		EED43747255E8F4800C42987 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		EEA4AF83255E7A9800B720D0 /* Weather_App */ = {
 			isa = PBXGroup;
 			children = (
+				EED43746255E8F2600C42987 /* Helpers */,
 				EEA4AF84255E7A9800B720D0 /* AppDelegate.swift */,
 				EEA4AF86255E7A9800B720D0 /* SceneDelegate.swift */,
 				EEA4AF88255E7A9800B720D0 /* ViewController.swift */,
@@ -129,6 +132,14 @@
 				EEA4AFA8255E7AAA00B720D0 /* Info.plist */,
 			);
 			path = Weather_AppUITests;
+			sourceTree = "<group>";
+		};
+		EED43746255E8F2600C42987 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EED43747255E8F4800C42987 /* Utilities.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 				EEA4AFB5255E7F3B00B720D0 /* WeatherCell.swift in Sources */,
 				EEA4AF89255E7A9800B720D0 /* ViewController.swift in Sources */,
 				EEA4AF85255E7A9800B720D0 /* AppDelegate.swift in Sources */,
+				EED43748255E8F4800C42987 /* Utilities.swift in Sources */,
 				EEA4AF87255E7A9800B720D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
