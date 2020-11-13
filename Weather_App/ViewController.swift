@@ -133,6 +133,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         
                         
                         
+                        //array of data
                         guard let weatherData = dataReturned["weather"] as? [Dictionary<String,Any>] else {
                             return
                         }
@@ -144,19 +145,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             
                         }
                         
+                        self.weatherArray.append(weatherObject)
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.collectionView.reloadData()
+                            
+                        }
+                        
                         
                         
                     }
                     
                     
-                    self.weatherArray.append(weatherObject)
                     
-                    DispatchQueue.main.async {
-                        
-                        self.collectionView.reloadData()
-                        
-                    }
-                   
+                    
                     
                 }
                 
