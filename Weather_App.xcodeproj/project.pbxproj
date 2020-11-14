@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE93C62F2560093A00D4230E /* CityLocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE93C62E2560093A00D4230E /* CityLocationDetailViewController.swift */; };
 		EEA4AF85255E7A9800B720D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AF84255E7A9800B720D0 /* AppDelegate.swift */; };
 		EEA4AF87255E7A9800B720D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AF86255E7A9800B720D0 /* SceneDelegate.swift */; };
 		EEA4AF89255E7A9800B720D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4AF88255E7A9800B720D0 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE93C62E2560093A00D4230E /* CityLocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLocationDetailViewController.swift; sourceTree = "<group>"; };
 		EEA4AF81255E7A9800B720D0 /* Weather_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA4AF84255E7A9800B720D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEA4AF86255E7A9800B720D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				EED43746255E8F2600C42987 /* Helpers */,
 				EEA4AF84255E7A9800B720D0 /* AppDelegate.swift */,
 				EEA4AF86255E7A9800B720D0 /* SceneDelegate.swift */,
+				EE93C62E2560093A00D4230E /* CityLocationDetailViewController.swift */,
 				EEA4AF88255E7A9800B720D0 /* ViewController.swift */,
 				EEA4AF8A255E7A9800B720D0 /* Main.storyboard */,
 				EEA4AF8D255E7AA900B720D0 /* Assets.xcassets */,
@@ -279,6 +282,7 @@
 				EEA4AFB5255E7F3B00B720D0 /* WeatherCell.swift in Sources */,
 				EEA4AF89255E7A9800B720D0 /* ViewController.swift in Sources */,
 				EEA4AF85255E7A9800B720D0 /* AppDelegate.swift in Sources */,
+				EE93C62F2560093A00D4230E /* CityLocationDetailViewController.swift in Sources */,
 				EED4374A255E907200C42987 /* WeatherClass.swift in Sources */,
 				EED43748255E8F4800C42987 /* Utilities.swift in Sources */,
 				EEA4AF87255E7A9800B720D0 /* SceneDelegate.swift in Sources */,

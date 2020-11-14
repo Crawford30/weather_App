@@ -13,11 +13,16 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var navBar: UINavigationBar!
+    let keyForBookMarks = "BookMarks"
     
     @IBOutlet weak var mainView: UIView!
     
+   var isBookMarked:Bool = false
+    
     @IBOutlet weak var collectionViewContainer: UIView!
     var weatherArray:   [ WeatherClass ] = []
+    var bookMarkArray:   [ WeatherClass ] = []
+    var selectedBookMarkArray: [ WeatherClass ] = []
     
     
     let baseURL: String = "https://api.openweathermap.org/data/2.5/group?id=833,3245,524901,703448,2643743,8277210,4873354,3126863,3125523,3120259&units=metric"
@@ -41,7 +46,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         prepUI()
         
+    
         fetchWeather()
+        
+        checkForBookMarks() 
         
         
         
@@ -51,53 +59,114 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func prepUI(){
         
+        let navBarHeight: CGFloat = navBar.frame.size.height
         
-        //mainView.anchor(top: navBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5.0, paddingLeft: 5.0, paddingBottom: -5.0, paddingRight: 5.0, width: 0, height: 0)
+        print("THIS IS NAV BAR HEIGHT: \(navBarHeight)")
+        
+        //let screenRect = UIScreen.main.bounds
+        
+//        let screenWidth = screenRect.size.width
+//        let screenHeight = screenRect.size.height
+        
+       let screenHeight =  self.view.frame.size.height
         
         
-        var screenWidth: CGFloat {
-            if screenOrientation.isPortrait {
-                return UIScreen.main.bounds.size.width
-            } else {
-                return UIScreen.main.bounds.size.height
-            }
-        }
-        var screenHeight: CGFloat {
-            if screenOrientation.isPortrait {
-                return UIScreen.main.bounds.size.height
-            } else {
-                return UIScreen.main.bounds.size.width
-            }
-        }
+        //MAIN VIEW
         
+        mainView.frame.origin.y =  94
+         mainView.frame.origin.x = 0
+        mainView.frame.size.height = screenHeight - (navBarHeight + 94)
+        
+        
+        //COLLECTION VIEW CONTAINER
+        
+
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+//        var screenWidth: CGFloat {
+//            if screenOrientation.isPortrait {
+//                return UIScreen.main.bounds.size.width
+//            } else {
+//                return UIScreen.main.bounds.size.height
+//            }
+//        }
+//        var screenHeight: CGFloat {
+//            if screenOrientation.isPortrait {
+//                return UIScreen.main.bounds.size.height
+//            } else {
+//                return UIScreen.main.bounds.size.width
+//            }
+//        }
+//
         
         //        var screenOrientation: UIInterfaceOrientation {
         //            return UIApplication.shared.statusBarOrientation
         //        }
         
-        var screenOrientation: UIInterfaceOrientation {
-            get {
-                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-                    #if DEBUG
-                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
-                    #else
-                    return nil
-                    #endif
-                }
-                return orientation
-            }
-        }
+//        var screenOrientation: UIInterfaceOrientation {
+//            get {
+//                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+//                    #if DEBUG
+//                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
+//                    #else
+//                    return nil
+//                    #endif
+//                }
+//                return orientation
+//            }
+//        }
+//
+       
         
-        // =======POSITION THE VIEW =======
         
-        //1. --------------MAIN VIEW -------
+//        mainView.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//
+//        collectionViewContainer.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//
+//        collectionView.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -10, paddingRight: 0, width: 0, height: screenHeight - (navBar.frame.size.height + 60))
         
-        // let screenH = UIScreen.main.bounds.size.height
         
-        mainView.frame.origin.y = navBar.frame.size.height
-        mainView.frame.origin.x = 0.0
         
-        mainView.frame.size.height = screenHeight - (navBar.frame.size.height + 20)
+        
+        
+        
+        
+////=====MAIN VIEW ===
+//        mainView.frame.origin.y = 64
+//        mainView.frame.origin.x = 0.0
+//
+//        //mainView.frame.size.height = (screenHeight - navBar.frame.size.height)
+//
+//        mainView.frame.size.height = (screenHeight - 44)
+//
+//
+//        //collection  view
+//
+//        collectionView.frame.origin.y = mainView.frame.origin.y
+//        collectionView.frame.origin.x = 0.0
+//
+//        collectionView.frame.size.height = (screenHeight - navBar.frame.size.height)
+//
+//        collectionView.frame.size.width = screenHeight - 2 * myVertSpacing
+//
+        
         
         
         
@@ -110,6 +179,164 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
     }
+    
+    
+    
+    
+    
+    //⚙️⚙️⚙️⚙️  SUPPORT FOR SAVING AND LOADING BOOKMARKS  ⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️⚙️
+    
+    
+    //MARK:- SAVE BOOK MARK
+    func saveBookMark() {
+        
+        do {
+            
+            let encodedData = try NSKeyedArchiver.archivedData(withRootObject: bookMarkArray, requiringSecureCoding: false)
+            
+            UserDefaults.standard.set( encodedData, forKey: keyForBookMarks )
+            
+        } catch {
+            
+            print("Problem in saving data")
+            
+        }
+        
+    }
+    
+    
+    
+    //MARK: - CHECK BOOK MARK
+    func checkForBookMarks() {
+        
+        //--------------------------------------------------------------------------
+        
+        if  UserDefaults.standard.object(forKey: keyForBookMarks ) == nil {  // Return if no bookmark saved
+            
+            return
+            
+        }
+        
+        do {
+            
+            let decodedData = UserDefaults.standard.object(forKey: keyForBookMarks ) as! Data
+            
+            bookMarkArray = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData( decodedData ) as! [WeatherClass]
+            
+        } catch {
+            
+            print("Problem Decoding Bookmarks")
+            
+        }
+        
+    }
+    
+    
+    
+    //===================isBookMark============
+    func isBookMark( theID: WeatherClass ) -> Bool {
+        
+        if bookMarkArray.count == 0 {
+            return false
+            
+        }
+        
+        for localID in bookMarkArray {
+            
+            if localID.id == theID.id {
+                
+                return true
+                
+            }
+            
+        }
+        
+        return false
+        
+    }
+    
+    
+    
+    //========removing book mark
+    func removeBookMark( theID: WeatherClass ) {
+        if bookMarkArray.count == 0 {
+            
+            return
+            
+        }
+        
+        var localIndex: Int = 0
+        
+        for localID in bookMarkArray {
+            
+            if localID.id == theID.id {
+                
+                bookMarkArray.remove(at: localIndex)
+                
+                
+//                //========= checking  for count ====
+//                if bookMarkArray.count == 0 {
+//
+//                   // bookMarkArray = weatherArray //to load all data
+//
+//                }
+                
+                return
+                
+            }
+            
+            
+        }
+        
+        localIndex += 1
+        
+        
+        
+        
+    }
+    
+    
+    
+    @IBAction func bookMarkAction(_ sender: UIButton) {
+        
+        
+       print("BOOKMARK BUTTON TAPPED: \(sender.tag)")
+        
+    
+        let whichLocation: Int = sender.tag
+        
+       // let id = weatherArray[whichLocation].id
+        
+      //  print("THIS IS THE WEATHER ID: \(id)")
+        
+        
+        var isInBookMark: Bool = false //assume not already  in bookmark
+        
+        isInBookMark = isBookMark(theID: weatherArray[whichLocation])
+        
+        if isInBookMark {
+            
+            removeBookMark(theID: weatherArray[whichLocation])
+            
+            
+            
+        } else{
+            
+            bookMarkArray.append( weatherArray[ whichLocation ] )
+        }
+        
+        
+        
+        collectionView.reloadData()
+        
+        saveBookMark()
+      
+        
+        
+    }
+    
+    
+    
     
     
     
@@ -168,7 +395,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     for dataReturned in parserJSON {
                         
                         var weatherObject: WeatherClass
-                        weatherObject = WeatherClass.init()
+                        weatherObject = WeatherClass.init(locationID: 0, date: 0, cityName: "", temperature: 0.0, tempMin: 0.0, tempMax: 0.0, pressure: 0, humidity: 0, windSpeed: 0.0, windDeg: 0.0, country: "", clouds: 0, latitude: 0.0, longitude: 0.0, weatherMain: "", weatherIcon: "", weatherDesc: "")
                         
                         
                         weatherObject.cityName = dataReturned["name"] as! String
@@ -220,14 +447,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         
                         self.weatherArray.append(weatherObject)
                         
-                        DispatchQueue.main.async {
-                            
-                            self.collectionView.reloadData()
-                            
-                        }
+                        
+                        
                         
                         
                     }
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.collectionView.reloadData()
+                        
+                        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true )
+                        
+                    }
+                    
                     
                     
                     
@@ -306,6 +539,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         print("This is total number of items in section: \(weatherArray.count)")
         
+        
+        
         return weatherArray.count
     }
     
@@ -329,6 +564,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.logitudeLabel?.layer.cornerRadius = 5.0
         cell.latitudeLabel?.layer.masksToBounds = true
         cell.logitudeLabel.text! = String(weatherArrayObject.longitude)
+        
+        cell.bookMarkBtn.tag = indexPath.item
+        
+        
+        //
+        if isBookMark(theID: weatherArray[indexPath.item]){
+            
+            cell.bookMarkBtn.setImage(UIImage(named:"filledStarRating"), for: .normal)
+            
+        } else {
+            
+            cell.bookMarkBtn.setImage(UIImage(named:"notFilledStar"), for: .normal)
+            
+        }
         
         
         //        cell.humidityLabel?.layer.cornerRadius = 5.0
@@ -357,6 +606,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //        cell.dateLabel.text! = stringDate
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+               
+               let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LocationDetail") as! CityLocationDetailViewController
+               nextViewController.modalPresentationStyle = .fullScreen
+               self.present(nextViewController, animated:true, completion:nil)
+               
+        
     }
     
     
