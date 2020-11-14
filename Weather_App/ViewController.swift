@@ -68,7 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //main view
         mainView.frame = CGRect(x: 0, y: 64, width: (2  * screenWidth ), height: screenHeight)
         
-        
+        //collection view
         collectionView.frame = CGRect(x: 0, y: 5, width: screenWidth, height: mainView.frame.size.height)
         
         

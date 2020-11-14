@@ -23,5 +23,11 @@ class CityLocationDetailViewController: UIViewController {
     
 
     
+    
+    @IBAction func backBtnPressed(_ sender: UIBarButtonItem) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 }

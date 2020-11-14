@@ -203,7 +203,11 @@
                                 <items>
                                     <barButtonItem title="Help" id="M8A-UZ-zVj"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Wlm-bm-9Ti"/>
-                                    <barButtonItem title="Settings" id="IZI-FV-uQ6"/>
+                                    <barButtonItem title="Back" id="IZI-FV-uQ6">
+                                        <connections>
+                                            <action selector="backBtnPressed:" destination="qwM-cO-pic" id="BbG-0j-PLD"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
