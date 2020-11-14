@@ -246,19 +246,36 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let weatherArrayObject = weatherArray[indexPath.item]
         
+        
+        cell.cityName?.layer.cornerRadius = 5.0
+        cell.cityName?.layer.masksToBounds = true
         cell.cityName.text!  = weatherArrayObject.cityName
         
+        
+        cell.humidityLabel?.layer.cornerRadius = 5.0
+        cell.humidityLabel?.layer.masksToBounds = true
         cell.humidityLabel.text! = "\(String(weatherArrayObject.humidity) ) %"
+        
+        
+        cell.pressureLabel?.layer.cornerRadius = 5.0
+        cell.pressureLabel?.layer.masksToBounds = true
         cell.pressureLabel.text! = "\(String(weatherArrayObject.pressure) ) %"
         
+        
+        
+        
+        cell.tempLabel?.layer.cornerRadius = 5.0
+        cell.tempLabel?.layer.masksToBounds = true
         
         let convertedTempInCelcius = Utilities.convertFromKelvinToCelcius(tempInKelvin: weatherArrayObject.temperature)
         cell.tempLabel.text! = "\(Int(convertedTempInCelcius)) °C"
         
-        //Formatting Date
-        let unixTimeInterval: Int = weatherArrayObject.date
-        let stringDate = Utilities.convertUnixTimeStampToStringDate(unixTimeInterval: unixTimeInterval)
-        cell.dateLabel.text! = stringDate
+            
+        
+//        //Formatting Date
+//        let unixTimeInterval: Int = weatherArrayObject.date
+//        let stringDate = Utilities.convertUnixTimeStampToStringDate(unixTimeInterval: unixTimeInterval)
+//        cell.dateLabel.text! = stringDate
         
         return cell
     }
