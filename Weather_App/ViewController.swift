@@ -52,6 +52,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func prepUI(){
         
         
+        //mainView.anchor(top: navBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 5.0, paddingLeft: 5.0, paddingBottom: -5.0, paddingRight: 5.0, width: 0, height: 0)
+        
+        
         var screenWidth: CGFloat {
             if screenOrientation.isPortrait {
                 return UIScreen.main.bounds.size.width
@@ -84,6 +87,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 return orientation
             }
         }
+        
+        // =======POSITION THE VIEW =======
+        
+        //1. --------------MAIN VIEW -------
+        
+        // let screenH = UIScreen.main.bounds.size.height
+        
+        mainView.frame.origin.y = navBar.frame.size.height
+        mainView.frame.origin.x = 0.0
+        
+        mainView.frame.size.height = screenHeight - (navBar.frame.size.height + 20)
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }
@@ -299,24 +322,32 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.cityName?.layer.masksToBounds = true
         cell.cityName.text!  = weatherArrayObject.cityName
         
+        cell.latitudeLabel?.layer.cornerRadius = 5.0
+        cell.latitudeLabel?.layer.masksToBounds = true
+        cell.latitudeLabel.text! = String(weatherArrayObject.latitude)
         
-        cell.humidityLabel?.layer.cornerRadius = 5.0
-        cell.humidityLabel?.layer.masksToBounds = true
-        cell.humidityLabel.text! = "\(String(weatherArrayObject.humidity) ) %"
-        
-        
-        cell.pressureLabel?.layer.cornerRadius = 5.0
-        cell.pressureLabel?.layer.masksToBounds = true
-        cell.pressureLabel.text! = "\(String(weatherArrayObject.pressure) ) %"
+        cell.logitudeLabel?.layer.cornerRadius = 5.0
+        cell.latitudeLabel?.layer.masksToBounds = true
+        cell.logitudeLabel.text! = String(weatherArrayObject.longitude)
         
         
+        //        cell.humidityLabel?.layer.cornerRadius = 5.0
+        //        cell.humidityLabel?.layer.masksToBounds = true
+        //        cell.humidityLabel.text! = "\(String(weatherArrayObject.humidity) ) %"
+        //
+        
+        //        cell.pressureLabel?.layer.cornerRadius = 5.0
+        //        cell.pressureLabel?.layer.masksToBounds = true
+        //        cell.pressureLabel.text! = "\(String(weatherArrayObject.pressure) ) %"
         
         
-        cell.tempLabel?.layer.cornerRadius = 5.0
-        cell.tempLabel?.layer.masksToBounds = true
         
-        let convertedTempInCelcius = Utilities.convertFromKelvinToCelcius(tempInKelvin: weatherArrayObject.temperature)
-        cell.tempLabel.text! = "\(Int(convertedTempInCelcius)) °C"
+        
+        //        cell.tempLabel?.layer.cornerRadius = 5.0
+        //        cell.tempLabel?.layer.masksToBounds = true
+        //
+        //        let convertedTempInCelcius = Utilities.convertFromKelvinToCelcius(tempInKelvin: weatherArrayObject.temperature)
+        //        cell.tempLabel.text! = "\(Int(convertedTempInCelcius)) °C"
         
         
         
@@ -364,3 +395,37 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 
 
+
+
+//========================================
+
+extension UIView {
+    func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let top = top {
+            topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
+        }
+        
+        if let left = left {
+            leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
+        }
+        
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: bottom, constant: paddingBottom).isActive = true
+        }
+        
+        if let right = right {
+            rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
+        }
+        
+        if width != 0 {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if height != 0 {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+    }
+}

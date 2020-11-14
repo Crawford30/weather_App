@@ -13,8 +13,8 @@ class WeatherCell: UICollectionViewCell {
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var bookMarkBtn: UIButton!
    
-    @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var tempLabel: UILabel!
-    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var logitudeLabel: UILabel!
+ 
     
 }
