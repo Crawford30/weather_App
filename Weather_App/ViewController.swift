@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import CoreLocation
+import MapKit
 
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -15,11 +16,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var navBar: UINavigationBar!
     let keyForBookMarks = "BookMarks"
     
+    @IBOutlet weak var mapView: MKMapView!
+    
     @IBOutlet weak var mainView: UIView!
     
-   var isBookMarked:Bool = false
+    var isBookMarked:Bool = false
     
-    @IBOutlet weak var collectionViewContainer: UIView!
+    
     var weatherArray:   [ WeatherClass ] = []
     var bookMarkArray:   [ WeatherClass ] = []
     var selectedBookMarkArray: [ WeatherClass ] = []
@@ -46,7 +49,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         prepUI()
         
-    
+        
         fetchWeather()
         
         checkForBookMarks() 
@@ -59,122 +62,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func prepUI(){
         
-        let navBarHeight: CGFloat = navBar.frame.size.height
+        let screenWidth = self.view.frame.size.width
+        let screenHeight =  self.view.frame.size.height
         
-        print("THIS IS NAV BAR HEIGHT: \(navBarHeight)")
-        
-        //let screenRect = UIScreen.main.bounds
-        
-//        let screenWidth = screenRect.size.width
-//        let screenHeight = screenRect.size.height
-        
-       let screenHeight =  self.view.frame.size.height
+        //main view
+        mainView.frame = CGRect(x: 0, y: 64, width: (2  * screenWidth ), height: screenHeight)
         
         
-        //MAIN VIEW
-        
-        mainView.frame.origin.y =  94
-         mainView.frame.origin.x = 0
-        mainView.frame.size.height = screenHeight - (navBarHeight + 94)
-        
-        
-        //COLLECTION VIEW CONTAINER
-        
-
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-//        var screenWidth: CGFloat {
-//            if screenOrientation.isPortrait {
-//                return UIScreen.main.bounds.size.width
-//            } else {
-//                return UIScreen.main.bounds.size.height
-//            }
-//        }
-//        var screenHeight: CGFloat {
-//            if screenOrientation.isPortrait {
-//                return UIScreen.main.bounds.size.height
-//            } else {
-//                return UIScreen.main.bounds.size.width
-//            }
-//        }
-//
-        
-        //        var screenOrientation: UIInterfaceOrientation {
-        //            return UIApplication.shared.statusBarOrientation
-        //        }
-        
-//        var screenOrientation: UIInterfaceOrientation {
-//            get {
-//                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-//                    #if DEBUG
-//                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
-//                    #else
-//                    return nil
-//                    #endif
-//                }
-//                return orientation
-//            }
-//        }
-//
-       
-        
-        
-//        mainView.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//
-//        collectionViewContainer.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//
-//        collectionView.anchor(top: navBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: -10, paddingRight: 0, width: 0, height: screenHeight - (navBar.frame.size.height + 60))
-        
-        
-        
-        
-        
-        
-        
-////=====MAIN VIEW ===
-//        mainView.frame.origin.y = 64
-//        mainView.frame.origin.x = 0.0
-//
-//        //mainView.frame.size.height = (screenHeight - navBar.frame.size.height)
-//
-//        mainView.frame.size.height = (screenHeight - 44)
-//
-//
-//        //collection  view
-//
-//        collectionView.frame.origin.y = mainView.frame.origin.y
-//        collectionView.frame.origin.x = 0.0
-//
-//        collectionView.frame.size.height = (screenHeight - navBar.frame.size.height)
-//
-//        collectionView.frame.size.width = screenHeight - 2 * myVertSpacing
-//
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        collectionView.frame = CGRect(x: 0, y: 5, width: screenWidth, height: mainView.frame.size.height)
         
         
         
@@ -274,12 +169,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 bookMarkArray.remove(at: localIndex)
                 
                 
-//                //========= checking  for count ====
-//                if bookMarkArray.count == 0 {
-//
-//                   // bookMarkArray = weatherArray //to load all data
-//
-//                }
+                //                //========= checking  for count ====
+                //                if bookMarkArray.count == 0 {
+                //
+                //                   // bookMarkArray = weatherArray //to load all data
+                //
+                //                }
                 
                 return
                 
@@ -300,14 +195,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func bookMarkAction(_ sender: UIButton) {
         
         
-       print("BOOKMARK BUTTON TAPPED: \(sender.tag)")
+        print("BOOKMARK BUTTON TAPPED: \(sender.tag)")
         
-    
+        
         let whichLocation: Int = sender.tag
         
-       // let id = weatherArray[whichLocation].id
+        // let id = weatherArray[whichLocation].id
         
-      //  print("THIS IS THE WEATHER ID: \(id)")
+        //  print("THIS IS THE WEATHER ID: \(id)")
         
         
         var isInBookMark: Bool = false //assume not already  in bookmark
@@ -330,7 +225,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.reloadData()
         
         saveBookMark()
-      
+        
         
         
     }
@@ -611,11 +506,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-               
-               let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LocationDetail") as! CityLocationDetailViewController
-               nextViewController.modalPresentationStyle = .fullScreen
-               self.present(nextViewController, animated:true, completion:nil)
-               
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LocationDetail") as! CityLocationDetailViewController
+        nextViewController.modalPresentationStyle = .fullScreen
+        self.present(nextViewController, animated:true, completion:nil)
+        
         
     }
     
