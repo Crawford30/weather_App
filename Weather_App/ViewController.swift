@@ -39,8 +39,51 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        prepUI()
         
         fetchWeather()
+        
+        
+        
+        
+    }
+    //===========
+    
+    func prepUI(){
+        
+        
+        var screenWidth: CGFloat {
+            if screenOrientation.isPortrait {
+                return UIScreen.main.bounds.size.width
+            } else {
+                return UIScreen.main.bounds.size.height
+            }
+        }
+        var screenHeight: CGFloat {
+            if screenOrientation.isPortrait {
+                return UIScreen.main.bounds.size.height
+            } else {
+                return UIScreen.main.bounds.size.width
+            }
+        }
+        
+        
+        //        var screenOrientation: UIInterfaceOrientation {
+        //            return UIApplication.shared.statusBarOrientation
+        //        }
+        
+        var screenOrientation: UIInterfaceOrientation {
+            get {
+                guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+                    #if DEBUG
+                    fatalError("Could not obtain UIInterfaceOrientation from a valid windowScene")
+                    #else
+                    return nil
+                    #endif
+                }
+                return orientation
+            }
+        }
         
         
     }
@@ -151,19 +194,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             
                         }
                         
-                      
+                        
                         self.weatherArray.append(weatherObject)
-
+                        
                         DispatchQueue.main.async {
                             
                             self.collectionView.reloadData()
                             
                         }
-                    
+                        
                         
                     }
                     
-               
+                    
                     
                 }
                 
@@ -275,12 +318,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let convertedTempInCelcius = Utilities.convertFromKelvinToCelcius(tempInKelvin: weatherArrayObject.temperature)
         cell.tempLabel.text! = "\(Int(convertedTempInCelcius)) °C"
         
-            
         
-//        //Formatting Date
-//        let unixTimeInterval: Int = weatherArrayObject.date
-//        let stringDate = Utilities.convertUnixTimeStampToStringDate(unixTimeInterval: unixTimeInterval)
-//        cell.dateLabel.text! = stringDate
+        
+        //        //Formatting Date
+        //        let unixTimeInterval: Int = weatherArrayObject.date
+        //        let stringDate = Utilities.convertUnixTimeStampToStringDate(unixTimeInterval: unixTimeInterval)
+        //        cell.dateLabel.text! = stringDate
         
         return cell
     }
